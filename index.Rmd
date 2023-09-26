@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: "Sebastian Juarez"
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to political elections and corruption in Southeast Asia, especially the Philippines. I am also interested in data about the black market in developing countries and socio-economic conditions that people in Southeast Asia face. Further, I would like to investigate data that highlights the eocnomic performance of the various regimes that exist in Latin America.
