@@ -9,12 +9,12 @@ output:
 
 
 
-## Project thoughts
+## Milestone 1: Project thoughts
 
 I am interested in exploring data related to political elections and corruption in Southeast Asia, especially the Philippines. I am also interested in data about the black market in developing countries and socio-economic conditions that people in Southeast Asia face. Further, I would like to investigate data that highlights the economic performance of the various regimes that exist in Latin America.
 
 
-##Loading in data
+## Milestone 2: Loading in data
 
 ```{r}
 library(tidyverse)
@@ -24,7 +24,7 @@ co2_production <- read_csv("~/Downloads/Global Socio-Economic & Environmental In
 
 Does a high gross national income per capita increase carbon dioxide output within a country? In my project, I will investigate the extent to which a growing gross national income per capita affects carbon dioxide output. I hypothesize that higher carbon dioxide output will correlate with a higher gross national income per capita. When the gross national income per capita is growing, I expect a higher number of goods and services exported from the country, which boosts the economy and typically raises wages. Additionally, as salaries rise, the consumption of carbon-emitting goods and services will increase. For example, more people would buy cars, use carbon-powered electricity, and take cars and airplanes. This increased economic activity would contribute to an overall higher carbon dioxide output. My sample consists of all of the countries in the world, with data collected every year from 1990 to 2021. My unit of analysis is a country. My explanatory variable of interest will be the gross national income per capita in a given year in a country, which will be in USD across all countries. My outcome variable is a country's carbon dioxide output for a given year. In the dataset, this is represented by a number that is proportional to a country’s carbon dioxide output. This number is used to make the data more manageable instead of using large numbers across different measuring systems. If I observe greater carbon dioxide production levels in years where the gross national income per capita has increased, this would support my hypothesis. If I observe lower carbon dioxide production levels in years where the gross national income per capita has increased, this would prove against my hypothesis. If I find a strong, positive correlation between the gross national income per capita and the carbon dioxide output within countries, this would support my hypothesis. 
 
-##One Data Visualization
+## Milestone 3: Data Visualization
 
 ```{r}
 co2_GNI <- co2_production |>
