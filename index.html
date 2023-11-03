@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1517,9 +1517,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
+<h2 id="milestone-1-project-thoughts">Milestone 1: Project thoughts</h2>
 <p>I am interested in exploring data related to political elections and corruption in Southeast Asia, especially the Philippines. I am also interested in data about the black market in developing countries and socio-economic conditions that people in Southeast Asia face. Further, I would like to investigate data that highlights the economic performance of the various regimes that exist in Latin America.</p>
-<p>##Loading in data</p>
+<h2 id="milestone-2-loading-in-data">Milestone 2: Loading in data</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
@@ -1528,6 +1528,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <p>Does a high gross national income per capita increase carbon dioxide output within a country? In my project, I will investigate the extent to which a growing gross national income per capita affects carbon dioxide output. I hypothesize that higher carbon dioxide output will correlate with a higher gross national income per capita. When the gross national income per capita is growing, I expect a higher number of goods and services exported from the country, which boosts the economy and typically raises wages. Additionally, as salaries rise, the consumption of carbon-emitting goods and services will increase. For example, more people would buy cars, use carbon-powered electricity, and take cars and airplanes. This increased economic activity would contribute to an overall higher carbon dioxide output. My sample consists of all of the countries in the world, with data collected every year from 1990 to 2021. My unit of analysis is a country. My explanatory variable of interest will be the gross national income per capita in a given year in a country, which will be in USD across all countries. My outcome variable is a country’s carbon dioxide output for a given year. In the dataset, this is represented by a number that is proportional to a country’s carbon dioxide output. This number is used to make the data more manageable instead of using large numbers across different measuring systems. If I observe greater carbon dioxide production levels in years where the gross national income per capita has increased, this would support my hypothesis. If I observe lower carbon dioxide production levels in years where the gross national income per capita has increased, this would prove against my hypothesis. If I find a strong, positive correlation between the gross national income per capita and the carbon dioxide output within countries, this would support my hypothesis.</p>
+<h2 id="milestone-3-data-visualization">Milestone 3: Data Visualization</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>co2_GNI</span> <span class='op'>&lt;-</span> <span class='va'>co2_production</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>GNI_PerCapital</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>co2_GNI</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span></span>
+<span>    cols <span class='op'>=</span> <span class='va'>co2_prod_1990</span><span class='op'>:</span><span class='va'>co2_prod_2021</span>,</span>
+<span>    names_to <span class='op'>=</span> <span class='st'>"co2_peryear"</span>,</span>
+<span>    values_to <span class='op'>=</span> <span class='st'>"co2_prod"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span></span>
+<span>    cols <span class='op'>=</span> <span class='va'>gnipc_1990</span><span class='op'>:</span><span class='va'>gnipc_2021</span>,</span>
+<span>    names_to <span class='op'>=</span> <span class='st'>"gnipc_peryear"</span>,</span>
+<span>    values_to <span class='op'>=</span> <span class='st'>"gnipc"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Country</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span></span>
+<span>    avg_co2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>co2_prod</span><span class='op'>)</span>,</span>
+<span>    avg_gnipc <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>gnipc</span><span class='op'>)</span></span>
+<span>        <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>avg_co2</span>, y <span class='op'>=</span> <span class='va'>avg_gnipc</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"GNI per capita as a Function of CO2 Production"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Carbon Dioxide Production"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Gross National Income"</span></span>
+<span>  <span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
