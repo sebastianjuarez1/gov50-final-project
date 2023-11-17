@@ -30,7 +30,7 @@ Does a high gross national income per capita increase carbon dioxide output with
 co2_GNI <- co2_production |>
   inner_join(GNI_PerCapital)
 
-co2_GNI |>
+co2_GNI <- co2_GNI |>
   pivot_longer(
     cols = co2_prod_1990:co2_prod_2021,
     names_to = "co2_peryear",
@@ -40,23 +40,54 @@ co2_GNI |>
     cols = gnipc_1990:gnipc_2021,
     names_to = "gnipc_peryear",
     values_to = "gnipc"
-  ) |>
+  )
+co2_GNI
+
+co2_GNI |>
   na.omit() |>
   group_by(Country) |>
   summarize(
     avg_co2 = mean(co2_prod),
     avg_gnipc = mean(gnipc)
-        ) |>
+  ) |>
   ggplot(aes(x = avg_co2, y = avg_gnipc)) +
   geom_point() +
   geom_smooth() +
   labs(
-    title = "GNI per capita as a Function of CO2 Production",
+    title = "GNI Per Capita as a Function of CO2 Production",
     x = "Carbon Dioxide Production",
     y = "Gross National Income"
   )
   
 
 ```
+As Carbn dioxide production increased, the gross national income in a country also generally increased. This graph demonstrates that countries that have higher gross national incomes also tend to have higher rates of carbon dioxide production. While the majority of the points are clustered near the bottom left of the graph, even there is an even clearer relationship there.
+
+```{r}
+library(infer)
+region <- co2_GNI |>
+  na.omit() |>
+  group_by(region, co2_peryear, gnipc_peryear) |>
+  summarize(avg_co2_prod = mean(co2_prod),
+            avg_gnipc = mean(gnipc))
+
+region_co2 <- region |>
+  ggplot(aes(x = co2_peryear, y = avg_co2_prod)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~ region)
+
+region_co2
 
 
+region_GNI <- region |> 
+  ggplot(aes(x = gnipc_peryear, y = avg_gnipc)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~ region)
+  
+region_GNI
+
+lm(co2_prod ~ gnipc, data = co2_GNI)
+```
+With this pair of visualizations, it is immediately visible that the rise and fall of GNI and CO2 are directly related. By analyzing the regression between the two, we can see that the relationship between the two is that there is a base carbon emission of 0.712, but as gnipc increases by 1, carbon dioxide increases by 0.000236.
