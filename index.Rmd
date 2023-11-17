@@ -61,7 +61,7 @@ co2_GNI |>
   
 
 ```
-As Carbn dioxide production increased, the gross national income in a country also generally increased. This graph demonstrates that countries that have higher gross national incomes also tend to have higher rates of carbon dioxide production. While the majority of the points are clustered near the bottom left of the graph, even there is an even clearer relationship there.
+As Carbon dioxide production increased, the gross national income in a country also generally increased. This graph demonstrates that countries that have higher gross national incomes also tend to have higher rates of carbon dioxide production. While the majority of the points are clustered near the bottom left of the graph, even there is an even clearer relationship there.
 
 ```{r}
 library(infer)
@@ -88,6 +88,6 @@ region_GNI <- region |>
   
 region_GNI
 
-lm(co2_prod ~ gnipc, data = co2_GNI)
+lm(gnipc ~ co2_prod, data = co2_GNI)
 ```
-With this pair of visualizations, it is immediately visible that the rise and fall of GNI and CO2 are directly related. By analyzing the regression between the two, we can see that the relationship between the two is that there is a base carbon emission of 0.712, but as gnipc increases by 1, carbon dioxide increases by 0.000236.
+With this pair of visualizations, it is immediately visible that the rise and fall of GNI and CO2 are directly related. By analyzing the regression between the two, we can see that the relationship between the two is that there is a base carbon emission of 6503, but as gnipc increases by 1, carbon dioxide increases by 2173
