@@ -75,7 +75,12 @@ region_co2 <- region |>
   ggplot(aes(x = co2_peryear, y = avg_co2_prod)) +
   geom_point() +
   geom_smooth() +
-  facet_wrap(~ region)
+  facet_wrap(~ region) +
+  labs(
+    title= "Regional Carbon Dioxide Output per year",
+    x = "Year",
+    y = "Carbon Dioxide Output"
+  )
 
 region_co2
 
@@ -84,7 +89,12 @@ region_GNI <- region |>
   ggplot(aes(x = gnipc_peryear, y = avg_gnipc)) +
   geom_point() +
   geom_smooth() +
-  facet_wrap(~ region)
+  facet_wrap(~ region) +
+  labs(
+    title= "Regional GNI per year",
+    x = "Year",
+    y = "GNI"
+  )
   
 region_GNI
 
